@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/api/products", productRoutes);
+app.use("/api/product", productRoutes);
 
 db.query("select 1")
   .then(() => {
