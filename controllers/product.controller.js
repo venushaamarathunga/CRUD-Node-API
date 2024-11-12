@@ -9,6 +9,14 @@ router.get("/list", async (req, res) => {
   res.send(products);
 });
 
+// get  product details
+router.get("/:id", async (req, res) => {
+  const product = await service.getProduct(req.params.id);
+  if (product == undefined)
+    res.status(404).json("no record with given id : " + req.params.id);
+  else res.status(200).json(product);
+});
+
 // create one product
 router.post("/", async (req, res) => {
   const { name, quantity, price, image } = req.body;

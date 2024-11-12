@@ -5,6 +5,13 @@ module.exports.getAllProducts = async () => {
   return records;
 };
 
+module.exports.getProduct = async (id) => {
+  const [record] = await db.query(`SELECT * FROM products WHERE id = (?)`, [
+    id,
+  ]);
+  return record;
+};
+
 module.exports.createProduct = async (name, quantity, price, image) => {
   const [record] = await db.query(
     `INSERT INTO products (name, quantity, price, image) VALUES (?, ?, ?, ?)`,
