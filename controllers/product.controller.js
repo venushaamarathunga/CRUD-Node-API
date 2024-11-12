@@ -11,10 +11,13 @@ router.get("/list", async (req, res) => {
 
 // get  product details
 router.get("/:id", async (req, res) => {
-  const product = await service.getProduct(req.params.id);
+  const product = await service.getProductById(req.params.id);
   if (product == undefined)
     res.status(404).json("no record with given id : " + req.params.id);
-  else res.status(200).json(product);
+  else {
+    res.status(200).json(product);
+    res.send(product);
+  }
 });
 
 // create one product
@@ -35,6 +38,22 @@ router.post("/", async (req, res) => {
       .status(400)
       .send({ message: err.message || "Failed to create product" });
   }
+});
+
+// delete product details
+router.delete("/:id", async (req, res) => {
+  const productRow = await service.deleteProduct(req.params.id);
+  if (productRow == 0)
+    res.status(404).json("no record with given id : " + req.params.id);
+  else res.status(200).json(productRow);
+});
+
+// update product details
+router.put("/:id", async (req, res) => {
+  const productRow = await service.updateProductById(req.body, req.params.id);
+  if (productRow == 0)
+    res.status(404).json("no record with given id : " + req.params.id);
+  else res.status(200).json(productRow);
 });
 
 module.exports = router;

@@ -5,8 +5,8 @@ module.exports.getAllProducts = async () => {
   return records;
 };
 
-module.exports.getProduct = async (id) => {
-  const [record] = await db.query(`SELECT * FROM products WHERE id = (?)`, [
+module.exports.getProductById = async (id) => {
+  const [[record]] = await db.query(`SELECT * FROM products WHERE id = (?)`, [
     id,
   ]);
   return record;
@@ -18,4 +18,23 @@ module.exports.createProduct = async (name, quantity, price, image) => {
     [name, quantity, price, image]
   );
   return record.insertId;
+};
+
+module.exports.deleteProduct = async (id) => {
+  const [{ recordId }] = await db.query(`DELETE FROM products WHERE id = (?)`, [
+    id,
+  ]);
+  return recordId;
+};
+
+module.exports.updateProductById = async (
+  { name, quantity, price, image },
+  id
+) => {
+  const [record] = await db.query(
+    `UPDATE products SET name = ?, quantity = ?, price = ?, image = ? WHERE id = (?)`,
+    [name, quantity, price, image, id]
+  );
+
+  return record;
 };
