@@ -8,11 +8,16 @@ const app = express();
 const db = require("./db");
 const productRoutes = require("./controllers/product.controller");
 
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000", // Frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"], // Methods that you want to allow
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use("/api/product", productRoutes);
+app.use("/product", productRoutes);
 
 db.query("select 1")
   .then(() => {
