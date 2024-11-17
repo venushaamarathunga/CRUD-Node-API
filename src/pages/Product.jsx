@@ -50,10 +50,10 @@ const Product = () => {
                 <th scope="col">Image</th>
               </tr>
             </thead>
-            {product.map((prdt) => {
-              return (
-                <tbody>
-                  <tr>
+            <tbody>
+              {product.map((prdt) => {
+                return (
+                  <tr key={prdt.id}>
                     <th scope="row">{prdt.id}</th>
                     <td>{prdt.name}</td>
                     <td>{prdt.quantity}</td>
@@ -80,9 +80,9 @@ const Product = () => {
                       </button>
                     </td>
                   </tr>
-                </tbody>
-              );
-            })}
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>
