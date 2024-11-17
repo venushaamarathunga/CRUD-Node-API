@@ -13,7 +13,7 @@ const ViewProduct = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3300/product/${id}`)
+      .get(`${process.env.REACT_APP_BACKEND_LINK}/product/${id}`)
       .then((res) => {
         setData(res.data);
       })

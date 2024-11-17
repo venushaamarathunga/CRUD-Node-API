@@ -17,7 +17,7 @@ const UpdateProduct = () => {
     setValues({ ...values, id });
     const getProduct = (id) => {
       axios
-        .get(`http://localhost:3300/product/${id}`)
+        .get(`${process.env.REACT_APP_BACKEND_LINK}/product/${id}`)
         .then((res) => {
           setValues(res.data);
         })
@@ -29,7 +29,7 @@ const UpdateProduct = () => {
   function updateProduct(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:3300/product/${id}`, values)
+      .put(`${process.env.REACT_APP_BACKEND_LINK}/product/${id}`, values)
       .then((res) => {
         navigate("/product/");
       })

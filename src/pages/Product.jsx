@@ -10,7 +10,7 @@ const Product = () => {
     if (deleted) {
       setDeleted(false);
       axios
-        .get("http://localhost:3300/product/list")
+        .get(`${process.env.REACT_APP_BACKEND_LINK}/product/list`)
         .then((res) => {
           setProduct(res.data);
         })
@@ -20,7 +20,7 @@ const Product = () => {
 
   function setRemoveProduct(id) {
     axios
-      .delete(`http://localhost:3300/product/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_LINK}/product/${id}`)
       .then((res) => {
         setDeleted(true);
       })
