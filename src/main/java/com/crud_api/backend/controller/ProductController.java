@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/product")
 public class ProductController {
 
@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     // Create a new product
-    @PostMapping("/")
+    @PostMapping("/create")
     public ResponseEntity<ProductModel> createProduct(@RequestBody ProductModel productModel) {
         try {
             ProductModel savedProduct = this.prodRepo.save(productModel);
