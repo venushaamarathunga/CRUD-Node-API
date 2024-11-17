@@ -14,7 +14,7 @@ const UpdateProduct = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    setValues({ ...values, id });
+    setValues((v) => ({ ...v, id }));
     const getProduct = (id) => {
       axios
         .get(`${process.env.REACT_APP_BACKEND_LINK}/product/${id}`)
@@ -42,7 +42,7 @@ const UpdateProduct = () => {
       <div className="box">
         <form onSubmit={updateProduct}>
           <div className="form-group">
-            <label for="inputProdName" className="col col-form-label">
+            <label htmlFor="inputProdName" className="col col-form-label">
               Name
             </label>
             <div className="col">
@@ -58,7 +58,7 @@ const UpdateProduct = () => {
             </div>
           </div>
           <div className="form-group">
-            <label for="inputProdQuantity" className="col col-form-label">
+            <label htmlFor="inputProdQuantity" className="col col-form-label">
               Quantity
             </label>
             <div className="col">
@@ -76,7 +76,7 @@ const UpdateProduct = () => {
             </div>
           </div>
           <div className="form-group">
-            <label for="inputProdPrice" className="col col-form-label">
+            <label htmlFor="inputProdPrice" className="col col-form-label">
               Price
             </label>
             <div className="col">
@@ -94,7 +94,7 @@ const UpdateProduct = () => {
             </div>
           </div>
           <div className="form-group">
-            <label for="inputProdImage" className="col col-form-label">
+            <label htmlFor="inputProdImage" className="col col-form-label">
               Image
             </label>
             <div className="col">
@@ -112,7 +112,13 @@ const UpdateProduct = () => {
           </div>
           <div className="form-group">
             <div className="col">
-              <button type="cancel" className="btn mx-2  btn-danger">
+              <button
+                type="cancel"
+                className="btn mx-2  btn-danger"
+                onClick={() => {
+                  navigate("/product/");
+                }}
+              >
                 Cancel
               </button>
               <button type="submit" className="btn  btn-primary">

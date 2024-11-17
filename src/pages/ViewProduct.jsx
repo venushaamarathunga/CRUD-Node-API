@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ViewProduct = () => {
   const [data, setData] = useState({
@@ -10,6 +10,7 @@ const ViewProduct = () => {
     image: "",
   });
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -25,7 +26,7 @@ const ViewProduct = () => {
       <h1 className="my-4">Product {id}</h1>
 
       <ul className="list-group">
-        <li className="list-group-item">
+        <li className="list-group-item border-0">
           <div className="row">
             <div className="col-2">
               <b>Name: </b>
@@ -34,7 +35,7 @@ const ViewProduct = () => {
           </div>
         </li>
 
-        <li className="list-group-item">
+        <li className="list-group-item border-0">
           <div className="row">
             <div className="col-2">
               <b>Quantity: </b>
@@ -43,7 +44,7 @@ const ViewProduct = () => {
           </div>
         </li>
 
-        <li className="list-group-item">
+        <li className="list-group-item border-0">
           <div className="row">
             <div className="col-2">
               <b>Price: </b>
@@ -52,7 +53,7 @@ const ViewProduct = () => {
           </div>
         </li>
 
-        <li className="list-group-item">
+        <li className="list-group-item border-0">
           <div className="row">
             <div className="col-2">
               <b>Image: </b>
@@ -61,6 +62,17 @@ const ViewProduct = () => {
           </div>
         </li>
       </ul>
+      <div className="d-flex my-4">
+        <button
+          type="cancel"
+          className="btn  btn-danger"
+          onClick={() => {
+            navigate("/product/");
+          }}
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   );
 };
